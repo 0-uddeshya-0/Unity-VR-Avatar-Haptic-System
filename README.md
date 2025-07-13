@@ -6,9 +6,216 @@
 
 This Unity project provides a complete virtual reality system enabling real-time avatar interactions between two remote users. The system features networked avatar movement, voice chat, simulated physical touch through collider zones, and an extendable architecture for haptic feedback integration with devices like bHaptics TactSuit and Teslasuit.
 
-### 🎯 Key Features
+# Unity VR Avatar Interaction System with Haptic Integration
 
-- **Real-time Networked Avatar Movement**: Synchronized VR avatar movements across multiple users
+## 🎯 Complete VR Multi-User Platform with ReadyPlayerMe and Photon Integration
+
+### 📋 Project Overview
+
+This Unity project provides a comprehensive virtual reality system enabling real-time avatar interactions between multiple remote users. The system features ReadyPlayerMe avatar integration, Photon PUN 2 networking, advanced haptic feedback, detailed body part collision detection, and VR-optimized interaction mechanics.
+
+### 🚀 Key Features
+
+- **ReadyPlayerMe Avatar Integration**: Seamless avatar loading and customization with VR tracking
+- **Photon PUN 2 Networking**: Real-time multiplayer synchronization with optimized performance
+- **Advanced Body Part Collision Detection**: Detailed touch zones for hands, arms, torso, head, and legs
+- **Haptic Feedback System**: Integrated haptic response for immersive touch interactions
+- **VR Interaction Framework**: Complete XR Toolkit integration with controller support
+- **Real-time Avatar Synchronization**: Synchronized movements, animations, and interactions
+- **Cross-Platform VR Support**: Compatible with Oculus, OpenXR, and other VR platforms
+
+### 🛠️ Technical Requirements
+
+#### Unity Version
+- **Unity 2022.3.21f1** (LTS - Required for stability)
+- **Unity XR Interaction Toolkit** 2.5.2+
+- **ReadyPlayerMe Unity SDK** (integrated via Packages/manifest.json)
+- **Photon PUN 2** (replaces Unity Netcode for better VR performance)
+
+#### VR Hardware Support
+- **Oculus Quest/Rift** (via OpenXR)
+- **HTC Vive/Vive Pro** (via OpenXR)
+- **Valve Index** (via OpenXR)
+- **Windows Mixed Reality** (via OpenXR)
+- **Other OpenXR Compatible Devices**
+
+#### Package Dependencies
+```json
+{
+  "scopedRegistries": [
+    {
+      "name": "Ready Player Me",
+      "url": "https://registry.npmjs.com",
+      "scopes": ["com.readyplayerme"]
+    }
+  ],
+  "dependencies": {
+    "com.readyplayerme.core": "1.9.0",
+    "com.unity.xr.interaction.toolkit": "2.5.2",
+    "com.unity.xr.openxr": "1.8.2",
+    "com.unity.render-pipelines.universal": "14.0.8"
+  }
+}
+```
+
+### 🏗️ Project Structure
+
+```
+Assets/
+├── Scripts/
+│   ├── Avatar/
+│   │   ├── ReadyPlayerMeAvatarLoader.cs      # Avatar loading and VR setup
+│   │   ├── BodyPartColliderManager.cs        # Touch detection system
+│   │   └── AvatarController.cs               # Core avatar controls
+│   ├── VR/
+│   │   ├── PhotonAvatarSync.cs               # Photon PUN 2 networking
+│   │   └── VRInteractionHandler.cs           # VR interaction handling
+│   └── Haptics/
+│       ├── HapticManager.cs                  # Haptic feedback system
+│       └── HapticDevice.cs                   # Device abstraction
+├── Scenes/
+│   └── VRHapticDemo.unity                    # Main demonstration scene
+└── Packages/
+    └── manifest.json                         # Package dependencies
+```
+
+### 🚀 Quick Start
+
+#### 1. Prerequisites
+- Unity 2022.3.21f1 installed
+- VR headset connected and configured
+- Photon PUN 2 account (free tier available)
+
+#### 2. Setup Instructions
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/0-uddeshya-0/Unity-VR-Avatar-Haptic-System.git
+   cd Unity-VR-Avatar-Haptic-System
+   ```
+
+2. **Open in Unity**
+   - Launch Unity Hub
+   - Click "Open" and select the cloned folder
+   - Unity will automatically resolve package dependencies
+
+3. **Configure Photon PUN 2**
+   - Import Photon PUN 2 from Asset Store or Package Manager
+   - Enter your Photon App ID in PhotonServerSettings
+   - Configure room settings in PhotonAvatarSync component
+
+4. **Setup ReadyPlayerMe**
+   - The ReadyPlayerMe SDK is pre-configured in manifest.json
+   - Customize avatar URLs in ReadyPlayerMeAvatarLoader script
+   - Test avatar loading in the demo scene
+
+5. **VR Configuration**
+   - Enable OpenXR in XR Management settings
+   - Configure your VR headset provider
+   - Test VR tracking in the demo scene
+
+### 🎮 Core Components
+
+#### ReadyPlayerMeAvatarLoader
+- **Purpose**: Loads and configures ReadyPlayerMe avatars for VR
+- **Features**: URL-based loading, VR tracking setup, bone mapping
+- **Usage**: Attach to avatar GameObject, configure avatar URL
+
+#### PhotonAvatarSync
+- **Purpose**: Synchronizes avatar data across Photon PUN 2 network
+- **Features**: Real-time position sync, animation sync, haptic events
+- **Usage**: Attach to networked avatar with PhotonView component
+
+#### BodyPartColliderManager
+- **Purpose**: Manages collision detection for avatar body parts
+- **Features**: Detailed body zones, haptic integration, event system
+- **Usage**: Auto-configured by ReadyPlayerMeAvatarLoader
+
+#### VRInteractionHandler
+- **Purpose**: Handles VR controller interactions and haptic feedback
+- **Features**: XR Toolkit integration, haptic triggers, interaction events
+- **Usage**: Attach to VR rig for interaction handling
+
+### 🔧 Configuration
+
+#### Avatar Setup
+```csharp
+// Example: Loading a ReadyPlayerMe avatar
+ReadyPlayerMeAvatarLoader loader = GetComponent<ReadyPlayerMeAvatarLoader>();
+loader.LoadAvatarFromUrl("https://models.readyplayer.me/YOUR_AVATAR_ID.glb");
+```
+
+#### Networking Setup
+```csharp
+// Example: Photon room connection
+PhotonNetwork.ConnectUsingSettings();
+PhotonNetwork.JoinOrCreateRoom("VRDemo", new RoomOptions { MaxPlayers = 4 }, null);
+```
+
+#### Haptic Configuration
+```csharp
+// Example: Triggering haptic feedback
+HapticManager.Instance.TriggerHapticFeedback(BodyPart.LeftHand, 0.8f, 0.2f);
+```
+
+### 🧪 Testing
+
+#### Local Testing
+1. Open VRHapticDemo scene
+2. Configure VR headset
+3. Play in editor with VR enabled
+4. Test avatar loading and interactions
+
+#### Multiplayer Testing
+1. Build project for target platform
+2. Run multiple instances or devices
+3. Connect to same Photon room
+4. Test networked avatar synchronization
+
+### 📚 Documentation
+
+- **[API Reference](API_Reference.md)**: Complete API documentation
+- **[User Guide](User_Guide.md)**: Step-by-step usage instructions
+- **[Technical Documentation](Technical_Documentation.md)**: Architecture details
+- **[Project Structure](Project_Structure.md)**: Detailed project organization
+
+### 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+### 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+### 🔗 Dependencies
+
+- **ReadyPlayerMe Unity SDK**: Avatar creation and loading
+- **Photon PUN 2**: Real-time multiplayer networking
+- **Unity XR Interaction Toolkit**: VR interaction framework
+- **OpenXR**: Cross-platform VR support
+
+### 🆘 Support
+
+For questions, issues, or contributions:
+- **Issues**: [GitHub Issues](https://github.com/0-uddeshya-0/Unity-VR-Avatar-Haptic-System/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/0-uddeshya-0/Unity-VR-Avatar-Haptic-System/discussions)
+- **Documentation**: Check the `/Documentation` folder
+
+### 🎯 Roadmap
+
+- [ ] Advanced gesture recognition
+- [ ] Voice chat integration
+- [ ] Additional haptic device support
+- [ ] Mobile VR compatibility
+- [ ] AI-powered interactions
+
+---
+
+**Built with Unity 2022.3.21f1 LTS | Powered by ReadyPlayerMe & Photon PUN 2**
 - **Voice Chat Integration**: Spatial audio communication between users
 - **Touch Simulation System**: Collider-based touch detection on avatar body parts (hands, arms, torso, etc.)
 - **Haptic Integration Framework**: Extendable code structure with integration hooks for bHaptics and Teslasuit
