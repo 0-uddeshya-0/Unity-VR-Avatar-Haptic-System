@@ -17,5 +17,11 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
   },
-  "scopedRegistries": []
+    {
+      "name": "ReadyPlayerMe",
+      "url": "https://registry.npmjs.org",
+      "scopes": [
+        "com.readyplayerme"
+      ]
 }
+  }
