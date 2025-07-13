@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # VR Avatar Interaction System
 ## Unity-based Virtual Reality Multi-User Platform with Haptic Integration
 
@@ -314,3 +315,7 @@ This project is provided as an educational and development resource. Please revi
 **Ready to build the future of VR social interaction!** 🚀
 
 For detailed technical information, please refer to the documentation files in the `/Documentation` folder.
+=======
+# Unity-VR-Avatar-Haptic-System
+A comprehensive Unity VR Avatar Interaction System with Haptic Integration featuring advanced avatar controls, immersive haptic feedback, gesture recognition, and real-time interaction capabilities for virtual reality applications.
+>>>>>>> ac3f374df8462deb27b04cc784635021bb4d5d04
