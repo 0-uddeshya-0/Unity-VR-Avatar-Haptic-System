@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # VR Avatar Interaction System
 ## Unity-based Virtual Reality Multi-User Platform with Haptic Integration
 
